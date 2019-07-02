@@ -23,8 +23,6 @@ class Game
     @current_turn = switch(current_turn)
   end
 
-  private
-
   def switch(opposing_player)
     @players.select { |player| player != opposing_player}.first
   end
