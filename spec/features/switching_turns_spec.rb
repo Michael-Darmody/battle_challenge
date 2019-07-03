@@ -8,8 +8,7 @@ feature 'Switching player tuns' do
 
     scenario 'after the player attacks' do
       sign_in_and_play
-      click_button('Attack')
-      click_button('Ok')
+      attack_and_confirm
       expect(page).not_to have_content("Mike's turn")
       expect(page).to have_content("Mark's turn")
     end

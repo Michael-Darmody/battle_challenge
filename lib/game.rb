@@ -15,15 +15,30 @@ class Game
     @players.last
   end
 
-  def attack(player)
-    player.receive_damage
-  end
-
   def switch_turn
     @current_turn = switch(current_turn)
   end
 
-  def switch(opposing_player)
-    @players.select { |player| player != opposing_player}.first
+  def switch(player)
+    other_player(player).first
+  end
+
+  def game_over?
+    losing_player.any?
+  end
+
+  def loser
+    losing_player.first
+  end
+
+  private
+  attr_reader :players
+
+  def losing_player
+    players.select { |player| player.hit_points <= 0 }
+  end
+
+  def other_player(opposing_player)
+    players.select { |player| player != opposing_player }
   end
 end
